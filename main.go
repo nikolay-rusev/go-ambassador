@@ -5,7 +5,7 @@ import (
     "ambassador/src/database"
     "ambassador/src/routes"
     "github.com/gofiber/fiber/v2"
-    "github.com/rs/cors"
+    "github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
