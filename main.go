@@ -5,6 +5,7 @@ import (
     "ambassador/src/database"
     "ambassador/src/routes"
     "github.com/gofiber/fiber/v2"
+    "github.com/rs/cors"
 )
 
 func main() {
@@ -13,11 +14,11 @@ func main() {
 
     app := fiber.New()
 
-    app.Use(cors.New(cors.Config{
-       AllowCredentials: true
-    }))
+	app.Use(cors.New(cors.Config{
+		AllowCredentials: true,
+	}))
 
-    routes.Setup(app)
+	routes.Setup(app)
 
     log.Fatal(app.Listen(":8000"))
 }
