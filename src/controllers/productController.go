@@ -3,6 +3,8 @@ package controllers
 import (
 	"ambassador/src/database"
 	"ambassador/src/models"
+	"strconv"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -12,4 +14,28 @@ func Products(c *fiber.Ctx) error {
 	database.DB.Find(&products)
 
 	return c.JSON(products)
+}
+
+func CreateProducts(c *fiber.Ctx) error {
+	var product models.Product
+
+	if err := c.BodyParser(&product); err != nil {
+		return err
+	}
+
+	database.DB.Create(&product)
+
+	return c.JSON(product)
+}
+
+func GetProduct(c *fiber.Ctx) error {
+	var product models.Product
+
+	id, _ := strconv.Atoi(c.Params("id"))
+
+	product.Id = uint(id)
+
+	database.DB.Find(&product)
+
+	return c.JSON(product)
 }
