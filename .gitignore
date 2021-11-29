@@ -1,4 +1,5 @@
 .idea
-.dbdata
+tmp
+dbdata
 .tmp
-tmp/main
+.dbdata
