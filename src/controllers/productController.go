@@ -39,3 +39,19 @@ func GetProduct(c *fiber.Ctx) error {
 
 	return c.JSON(product)
 }
+
+func UpdateProduct(c *fiber.Ctx) error {
+	id, _ := strconv.Atoi(c.Params("id"))
+
+	product := models.Product{
+		Id: uint(id),
+	}
+
+	if err := c.BodyParser(&product); err != nil {
+		return err
+	}
+
+	database.DB.Model(&product).Updates(&product)
+
+	return c.JSON(product)
+}
